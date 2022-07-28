@@ -19,10 +19,13 @@ public class CalculatorController {
 		// is clicked to execute the actionPerformed method
 		// in the CalculateListener inner class
 		
-		this.theView.addCalculateListener(new CalculateListener());
+		this.theView.addCalculateListener(new addListener());
+		this.theView.subCalculateListener(new subListener());
+		this.theView.multCalculateListener(new multListener());
+		this.theView.divCalculateListener(new divListener());
 	}
 	
-	class CalculateListener implements ActionListener{
+	class addListener implements ActionListener{
 
 		public void actionPerformed(ActionEvent e) {
 			
@@ -39,7 +42,7 @@ public class CalculatorController {
 				
 				theModel.addTwoNumbers(firstNumber, secondNumber);
 				
-				theView.setCalcSolution(theModel.getCalculationValue());
+				theView.setAddSolution(theModel.getAddValue());
 			
 			}
 
@@ -53,6 +56,94 @@ public class CalculatorController {
 			
 		}
 		
+
 	}
+
+	class subListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			
+			int thirdNumber, fourthNumber = 0;
+			
+			try{
+			
+				thirdNumber = theView.getThirdNumber();
+				fourthNumber = theView.getFourthNumber();
+				
+				theModel.subTwoNumbers(thirdNumber, fourthNumber);
+				
+				theView.setSubSolution(theModel.getSubValue());
+			
+			}
+
+			catch(NumberFormatException ex){
+				
+				System.out.println(ex);
+				
+				theView.displayErrorMessage("You Need to Enter 2 Integers");
+				
+			}
+			
+		}
+
+	}
+
+	class multListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			
+			int fifthNumber, sixthNumber = 0;
 	
+			try{
+			
+				fifthNumber = theView.getFifthNumber();
+				sixthNumber = theView.getSixthNumber();
+				
+				theModel.multTwoNumbers(fifthNumber, sixthNumber);
+				
+				theView.setMultSolution(theModel.getMultValue());
+			
+			}
+
+			catch(NumberFormatException ex){
+				
+				System.out.println(ex);
+				
+				theView.displayErrorMessage("You Need to Enter 2 Integers");
+				
+			}
+			
+		}
+
+	}
+
+	class divListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			
+			int seventhNumber, eighthNumber = 0;
+			
+			try{
+			
+				seventhNumber = theView.getSeventhNumber();
+				eighthNumber = theView.getEighthNumber();
+				
+				theModel.divTwoNumbers(seventhNumber, eighthNumber);
+				
+				theView.setDivSolution(theModel.getDivValue());
+			
+			}
+
+			catch(NumberFormatException ex){
+				
+				System.out.println(ex);
+				
+				theView.displayErrorMessage("You Need to Enter 2 Integers");
+				
+			}
+			
+		}
+
+	}
+
 }
